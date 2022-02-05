@@ -1,0 +1,26 @@
+# demo-helm-201: TEST stage
+
+
+image:
+  version: 1.0.1
+
+service:
+  type: ClusterIP
+  port: 8001
+
+# Example for with and range showcase
+serviceAccounts:
+  commonLable: demo-label
+  names:
+  - name: demo-app-s1-sa
+    lable: demo1
+  - name: demo-app-s2-sa
+    lable: demo2
+
+# Subchart - override values
+demo-subchart:
+  commonItem: from-parent-mega-one
+
+# declare global variables, also available in subchart
+global:
+  config: a-global-value

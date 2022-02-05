@@ -1,0 +1,16 @@
+
+{{/*
+ with, set the scope
+*/}}
+{{- with .Values.serviceAccounts }}
+{{- range .names }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ .name }}
+  labels:
+    demo-label: {{ .lable }}
+    app.kubernetes.io/name: {{ $.Values.serviceAccounts.commonLable }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,28 @@
+# A comment which will stay in the generated resource definition
+apiVersion: v1
+kind: Service
+metadata:
+  # Generated name contains "Release Name" and a resource type postfix
+  name: "{{ include "demo-helm-201.fullname" . }}-svc"
+  {{- /*
+    Newlines, whitespace and indent
+    --------------------------------
+    "-" to remove the newline
+    "indent" defines the number of whitespaces
+
+    in general reduce the amount of generated new lines
+  */}}
+  labels:
+    {{- include "demo-helm-201.labels" . | nindent 4 }}
+    {{ include "demo-helm-201.labels" . | nindent 4 }}
+    {{- include "demo-helm-201.labels" . | nindent 2 }}
+
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "demo-helm-201.selectorLabels" . | nindent 4 }}

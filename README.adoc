@@ -1,0 +1,41 @@
+= Helm 201
+:author: Hafid Haddouti
+:toc: macro
+:toclevels: 4
+:sectlinks:
+:sectanchors:
+
+toc::[]
+
+== Overview
+
+An 201 introduction in Helm (v3) with the following topics
+
+* Templating
+* Charts and Subcharts
+* Life Cycle and Hooks
+* OCI Registry
+
+== Action
+
+The entire intro is prepared as Jupyter Notebook, link:helm-201.ipynb[].
+
+== Summmary
+
+Helm is a de-facto standard in providing Kubernetes resources to deploy an application with all resources in a Kubernetes/OpenShift cluster.
+This article provides an introduction in some specific Helm topics.
+
+== References
+
+* Helm: link:https://helm.sh/[]
+
+== License
+
+This article and project are licensed under the Apache License, Version 2.
+Separate third-party code objects invoked within this code pattern are licensed by their respective providers pursuant
+to their own separate licenses. Contributions are subject to the
+link:https://developercertificate.org/[Developer Certificate of Origin, Version 1.1] and the
+link:https://www.apache.org/licenses/LICENSE-2.0.txt[Apache License, Version 2].
+
+See also link:https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN[Apache License FAQ]
+.

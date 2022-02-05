@@ -1,0 +1,9 @@
+# demo-helm-201: TEST stage
+
+
+image:
+  version: 1.0.1
+
+service:
+  type: ClusterIP
+  port: 8001

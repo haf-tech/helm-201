@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-cm
+data:
+  item: {{ .Values.commonItem }}
+  {{- if .Values.global }}
+  {{- if .Values.global.config }}
+  config: {{ .Values.global.config }}
+  {{- end }}
+  {{- end }}
