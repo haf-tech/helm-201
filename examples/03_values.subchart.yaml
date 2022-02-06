@@ -1,0 +1,3 @@
+# demo-helm-201: content of default values.yaml of the subchart demo-subchart
+
+commonItem: mega-one

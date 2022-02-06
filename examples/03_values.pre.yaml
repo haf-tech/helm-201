@@ -1,8 +1,8 @@
-# demo-helm-201: TEST stage
+# demo-helm-201: PRE stage
 
 
 image:
-  version: 1.0.1
+  tag: "1.0.1"
 
 service:
   type: ClusterIP
