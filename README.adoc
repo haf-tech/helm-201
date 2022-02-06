@@ -20,7 +20,7 @@ An 201 introduction in Helm (v3) with the following topics
 
 The entire intro is prepared as Jupyter Notebook, link:helm-201.ipynb[].
 
-== Summmary
+== Summary
 
 Helm is a de-facto standard in providing Kubernetes resources to deploy an application with all resources in a Kubernetes/OpenShift cluster.
 This article provides an introduction in some specific Helm topics.
