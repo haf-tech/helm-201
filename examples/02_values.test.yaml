@@ -10,7 +10,7 @@ service:
 
 # Example for with and range showcase
 serviceAccounts:
-  commonLable: demo-label
+  commonLable: demo-common-label
   names:
   - name: demo-app-s1-sa
     lable: demo1
