@@ -18,7 +18,7 @@ An 201 introduction in Helm (v3) with the following topics
 
 == Action
 
-The entire intro is prepared as Jupyter Notebook, link:helm-201.ipynb[].
+The entire intro is prepared as Jupyter Notebook, link:helm-201.ipynb[] or Kui link:https://github.com/guidebooks/playground[Guidebook], link:helm-201.md[].
 
 == Summary
 
