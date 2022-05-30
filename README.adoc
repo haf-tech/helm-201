@@ -20,6 +20,121 @@ An 201 introduction in Helm (v3) with the following topics
 
 The entire intro is prepared as Jupyter Notebook, link:helm-201.ipynb[] or Kui link:https://github.com/guidebooks/playground[Guidebook], link:helm-201.md[].
 
+== Advanced
+
+The following section covers additional topics like
+
+* charts dependency
+* how to structure charts for various stage installations but expecting always only `values.yaml`
+* need of various values file (app-specific and global values)
+
+----
+$ cd hierarchy
+
+$ tree . -L 3
+.
+├── comp1
+│   ├── Chart.yaml
+│   ├── charts
+│   ├── templates
+│   │   ├── NOTES.txt
+│   │   ├── _helpers.tpl
+│   │   ├── deployment.yaml
+│   │   ├── hpa.yaml
+│   │   ├── ingress.yaml
+│   │   ├── route.yaml
+│   │   ├── service.yaml
+│   │   └── serviceaccount.yaml
+│   └── values.yaml
+├── comp2
+│   ├── Chart.yaml
+│   ├── charts
+│   ├── templates
+│   │   ├── NOTES.txt
+│   │   ├── _helpers.tpl
+│   │   ├── deployment.yaml
+│   │   ├── hpa.yaml
+│   │   ├── ingress.yaml
+│   │   ├── route.yaml
+│   │   ├── service.yaml
+│   │   └── serviceaccount.yaml
+│   └── values.yaml
+└── systemA
+    ├── stage-prod
+    │   ├── Chart.lock
+    │   ├── Chart.yaml
+    │   ├── charts
+    │   └── values.yaml
+    └── stage-test
+        ├── Chart.lock
+        ├── Chart.yaml
+        ├── charts
+        └── values.yaml
+
+11 directories, 26 files
+----
+
+In the above example we have 2 components and 1 system including the components as dependency. The system (`systemA`) will be installed in 2 stags `stage-test` and `stage-prod`.
+
+`Chart.yaml` contains the information which component/chart and version is needed.
+
+The following commands are necessary to deploy the e.g. `systemA` in `stage-test`
+
+----
+$ cd hierarchy/systemA/stage-test
+
+$ helm dependency build
+
+$ helm template sys-a-test . --output-dir ../../../work/systemA-test --debug
+----
+
+The result is
+
+----
+systemA-test
+└── comp1
+    └── charts
+        └── comp1
+            └── templates
+                ├── deployment.yaml
+                ├── route.yaml
+                ├── service.yaml
+                └── serviceaccount.yaml
+
+4 directories, 4 files
+----
+
+
+Verifying the value files
+
+----
+cat systemA/stage-test/values.yaml
+
+comp1:
+  config:
+    probe:
+      enabled: false
+    route:
+      enabled: true
+    envs:
+      A: "some content"
+      TEKTON_101_ENV_NAME: App3-TEST
+      TEKTON_101_ENV_EXAMPLE: Version-0.3-TEST
+----
+
+and the resulting template
+
+----
+cat systemA-test/comp1/charts/comp1/templates/deployment.yaml| grep -i 'env:' -A6
+          env:
+            - name: A
+              value: some content
+            - name: TEKTON_101_ENV_EXAMPLE
+              value: Version-0.3-TEST
+            - name: TEKTON_101_ENV_NAME
+              value: App3-TEST
+----
+
 == Summary
 
 Helm is a de-facto standard in providing Kubernetes resources to deploy an application with all resources in a Kubernetes/OpenShift cluster.

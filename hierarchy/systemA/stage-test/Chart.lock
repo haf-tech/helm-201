@@ -1,0 +1,6 @@
+dependencies:
+- name: comp1
+  repository: file://../../comp1
+  version: 0.1.0
+digest: sha256:b708ac0b0e8504b0d1bc8780d1c0f3f716063073a3b39d2785115f755351960c
+generated: "2022-05-30T07:34:11.415219+02:00"

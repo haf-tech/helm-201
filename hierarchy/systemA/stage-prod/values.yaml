@@ -1,0 +1,11 @@
+
+comp1:
+  config:
+    probe:
+      enabled: false
+    route:
+      enabled: true
+    envs:
+      A: "some content"
+      TEKTON_101_ENV_NAME: App-PROD
+      TEKTON_101_ENV_EXAMPLE: Version-0.3-PROD
